@@ -1,6 +1,6 @@
 import random
 
-yowon = "You Win? Congrats Ig (Boredom goes brrrr)"
+yowon = "You Win? Congrats Ig (Bordom goes brrrr)"
 blnt = "\033[51m\033[40m\033[37mBetter Luck Next Time!\033[0m"
 
 ntg = random.randint(1, 10)
