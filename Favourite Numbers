@@ -1,0 +1,38 @@
+import time
+
+winner = "winner"
+
+print("Has To Be A Number VVVV")
+result_1 = int(input("Give me a number below 100"))
+
+if result_1 == 93215:
+    print(winner)
+elif result_1 < 95:
+    print("That's Rad")
+    time.sleep(1)
+    print("Damn")
+    time.sleep(1)
+    Input2 = input("Hmmmmm What's a better number")
+    time.sleep(0.3)
+    print(f"Well, {Input2} does seem like a better number") 
+elif result_1 > 100:
+    time.sleep(1)
+    print("Over 100?")
+    time.sleep(1)
+    print("Damn")
+else:
+    print("You Didn't Win?")
+
+
+print("...3")
+time.sleep(1)
+print("...2")
+time.sleep(1)
+print("...1")
+time.sleep(1)
+
+favnum = int(input("what is your favourite number?"))
+time.sleep(1)
+print(f"Your favourite number ({favnum}) is {93215 - favnum} less than my favourite number!")
+time.sleep(1)
+print(f"{93215 - favnum} + {favnum} is my favourite number!")
