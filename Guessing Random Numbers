@@ -1,0 +1,25 @@
+import random
+
+yowon = "You Win? Congrats Ig (Boredom goes brrrr)"
+blnt = "\033[51m\033[40m\033[37mBetter Luck Next Time!\033[0m"
+
+ntg = random.randint(1, 10)
+attempts = 3
+print("\033[51m\033[45m\033[34mYou're Chances are 3 in 10\033[0m")
+print("\033[51m\033[45m\033[34mYou Have 1, 2, 3, 4, 5, 6, 7, 8, 9, 10\033[0m")
+for attempt in range(attempts):
+    guess = int(input("Attempt {}: \033[35m\033[5mGuess A Number\033[0m".format(attempt + 1)))
+    
+    if guess == ntg:
+        print(yowon)
+        break
+    elif guess < ntg:
+        print("Try Again")
+        print("(Higher!)")
+    else:
+        print("Try Again")
+        print("(Lower!)")
+        
+    if attempt == attempts - 1:
+        print(blnt)
+        print("\033[31m The Correct Number Was:\033[0m {}.".format(ntg))
