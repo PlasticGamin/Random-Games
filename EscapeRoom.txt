@@ -1,0 +1,134 @@
+class GameObject:
+    #This ling is initialising names, appearances, feelings, and smells.
+    def __init__(self, name, appearance, feel, smell):
+         self.name = name
+         self.appearance = appearance
+         self.feel = feel
+         self.smell = smell
+    #These next few lines just creates the functions that allow you to interact with the objects
+    def touch(self):
+        return f"You touch the {self.name}.{self.feel} \n"
+    
+    def snort(self):
+        return f"You snorted the {self.name}.{self.smell} \n"
+
+    def observe(self):
+         return f"You have seen the {self.name}.{self.appearance} \n"
+
+#These are the objects inside of the game 
+#item1 = GameObject(name = " Benji", appearance = " Benji appears to be short and alopmst like its deflating", feel = " Cold with a wet and slimey feel", smell = " Benji smells of old rotten seafood")
+#item2 = GameObject(name = " Cardboard Box", appearance = "The card board box has a lot of fridge magnets", feel = "Dry but sitcky", smell = "Glue")
+#item3 = GameObject(name = " phenylethylbarbituric", appearance = "Orangised in a line alomst like the number 1", feel = "Feels grainy", smell = " You might not want to snort this stuff")
+#item4 = GameObject(name = " Cealiing fan", appearance = "Dusty fan blades with a small object above one", feel = "Dirty and dry", smell = "Smells of dust")
+#item5 = GameObject(name = " Folded peice of paper", appearance = " You open the folded paper and it has a faint number 5 on it", feel = "it feels rough like regular paper would", smell = "This has no scent")
+#item6 = GameObject(name = " Door", appearance = " This Code Requires these numbers to be order smallest to largest", feel = " The Keypad on Metal door has a metalic feel to it", smell = " This Door smells like money")
+
+class Room:
+#This creates the escape code for the game
+    def __init__(self, escape_code, game_objects):
+        self.escape_code = escape_code
+        self.game_objects = game_objects
+
+#This checks if the escape code is correct    
+    def check_code(self, code):
+        return escape_code == code
+
+#Creates a list of the names
+    def get_game_object_names(self):
+        names = []
+        for object in self.game_objects:
+            names.append(object.name)
+        return names
+
+class Game:
+#This part is the escape code beeing identified
+    def __init__(self):
+        self.attempts = 0
+        objects = self.create_objects()
+        self.room = Room(158, objects)
+
+#This creates the list of objects   
+    def create_objects(self):
+        return [ 
+#These are the objects being put inside of the game
+            GameObject(
+                "Benji",
+                " Benji appears to be quite short and strangley deflating",
+                " Benji is kind of cold with a wet and slimey feel",
+                " Benji smells of old rotten seafood"),
+            GameObject(
+                "Cardboard Box",
+                " The card board box has a number 8 fridge magnet",
+                " Dry but sitcky",
+                " Glue"),
+            GameObject(
+                "Phenylethylbarbituric",
+                " Orangised in a line alomst like the number 1",
+                " Feels grainy",
+                " You might not want to snort this stuff"),
+            GameObject(
+                "Cealiing fan",
+                " Dusty fan blades with a peice of paper above it",
+                " It feels dirty and really dry",
+                " You begin coughing"),
+            GameObject(
+                "Folded peice of paper",
+                " You open the folded paper and it has a faint number 5 on it",
+                " It feels rough like regular paper would",
+                " This has no scent"),
+            GameObject(
+                "Door",
+                " This Code Requires these numbers to be order smallest to largest",
+                " The Keypad on Metal door has a metalic feel to it",
+                " This Door smells like money")
+                
+            ]
+
+    def interact_with_object(self, object, interaction):
+        if interaction == "1":
+            return object.touch()
+        elif interaction == "2":
+            return object.snort()
+        else:
+            return object.observe()
+
+    def select_object(self, index):
+        selected_object = self.room.game_objects[index]
+        prompt = self.get_object_interaction_string(selected_object.name)
+        interaction = input(prompt)
+        clue = self.interact_with_object(selected_object, interaction)
+        print(clue)
+
+    #actual game loop
+    def take_turn(self):
+        prompt = self.get_game_prompt()
+        selection = int(input(prompt))
+        if selection >= 1 and selection <= 6:
+            self.select_object(selection - 1)
+            self.take_turn()
+
+    def get_object_interaction_string(self, name):
+        return f"How will you interact with {name}? \n1. Touch \n2. Snort \n3. Observe \n"
+
+    def get_game_prompt(self):
+        prompt = "Guess this 3 digit code or chose and object to interact with. \n"
+        names = self.room.get_game_object_names()
+        index = 1
+        for name in names:
+            prompt += f"{index}. {name}\n"
+            index += 1
+        return prompt
+        return
+
+        
+        def interact_with_object(self, object, interaction):
+            if interaction == "1":
+                return object.touch()
+            elif interaction == "2":
+                return object.snort()
+            else:
+                return object.observe()
+
+
+game = Game()
+game.take_turn()
